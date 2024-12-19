@@ -5,8 +5,8 @@
 
 
 {% block content %}
-<section class="job-process py-5" style="background-image: url('/static/userapp/images/back.jpg'); background-size: cover; background-position: center center; padding: 50px 0;">
-    <h2 class="text-center" style="color: #1861bf; font-family: 'Poppins', sans-serif; font-size: 2.5rem; margin-bottom: 2rem;">Job Process</h2>
+<section class="job-process py-5" style="background-image: url('/static/userapp/images/background2.jpg'); background-size: cover; background-position: center center; padding: 50px 0;">
+    <h2 class="text-center" style="color: #ffffff; font-family: 'Poppins', sans-serif; font-size: 3rem; margin-bottom: 2rem;">Job Process</h2>
     <div class="container-fluid mt-5">
         <div class="row justify-content-center">
             <!-- Step 1: Account Create -->
@@ -49,15 +49,16 @@
     </div>
 </section>
 
-
-<section class="featured-jobs py-6" style="background-image: url('static/userapp/images/back.jpg'); background-size: cover; background-position: center center; padding: 50px 0;">
+<section class="featured-jobs py-6" style="background-image: url('/static/userapp/images/back.jpg'); background-size: cover; background-position: center center; padding: 50px 0;">
     <h3 class="text-center featured-heading" style="color: #1861bf; font-family: 'Poppins', sans-serif; font-size: 2.5rem; font-weight: bold;">Top Featured Jobs</h3>
     <div class="container">
         <div class="row">
             <!-- Job Card 1 -->
             <div class="col-md-4 mb-4">
-                <div class="card shadow-lg job-card animate__animated animate__fadeInUp" style="border-radius: 20px; overflow: hidden; transition: transform 0.3s ease;">
-                    <div class="card-body" style="background-color: #f4f6f9; padding: 30px;">
+                <div class="card shadow-lg job-card animate__animated animate__fadeInUp" style="border-radius: 20px; overflow: hidden; transition: transform 0.3s ease; height: 400px;">
+                    <div class="card-body" style="background-color: #f4f6f9; padding: 30px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <!-- Add image inside the card -->
+                        <img src="{% static 'userapp/images/jobdetails1.jpeg' %}" alt="Software Engineer" style="width: 100%; max-height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
                         <h5 class="card-title" style="color: #1861bf; font-family: 'Roboto', sans-serif; font-size: 1.25rem; font-weight: bold;">Software Engineer</h5>
                         <p class="card-text" style="color: #545d68; font-size: 1rem; line-height: 1.5;">Join a leading tech company to innovate and shape the future of technology.</p>
                         <a href="/login/" class="btn custom-btn-primary" style="background-color: #1861bf; color: #ffffff; border-radius: 30px; padding: 12px 24px; font-size: 1rem; transition: background-color 0.3s ease;">
@@ -69,8 +70,10 @@
 
             <!-- Job Card 2 -->
             <div class="col-md-4 mb-4">
-                <div class="card shadow-lg job-card animate__animated animate__fadeInUp animate__delay-1s" style="border-radius: 20px; overflow: hidden; transition: transform 0.3s ease;">
-                    <div class="card-body" style="background-color: #f4f6f9; padding: 30px;">
+                <div class="card shadow-lg job-card animate__animated animate__fadeInUp animate__delay-1s" style="border-radius: 20px; overflow: hidden; transition: transform 0.3s ease; height: 400px;">
+                    <div class="card-body" style="background-color: #f4f6f9; padding: 30px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <!-- Add image inside the card -->
+                        <img src="{% static 'userapp/images/jobdetails4.jpg' %}" alt="Data Scientist" style="width: 100%; max-height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
                         <h5 class="card-title" style="color: #1861bf; font-family: 'Roboto', sans-serif; font-size: 1.25rem; font-weight: bold;">Data Scientist</h5>
                         <p class="card-text" style="color: #545d68; font-size: 1rem; line-height: 1.5;">Collaborate with industry experts to derive actionable insights from big data.</p>
                         <a href="/login/" class="btn custom-btn-primary" style="background-color: #1861bf; color: #ffffff; border-radius: 30px; padding: 12px 24px; font-size: 1rem; transition: background-color 0.3s ease;">
@@ -82,8 +85,10 @@
 
             <!-- Job Card 3 -->
             <div class="col-md-4 mb-4">
-                <div class="card shadow-lg job-card animate__animated animate__fadeInUp animate__delay-2s" style="border-radius: 20px; overflow: hidden; transition: transform 0.3s ease;">
-                    <div class="card-body" style="background-color: #f4f6f9; padding: 30px;">
+                <div class="card shadow-lg job-card animate__animated animate__fadeInUp animate__delay-2s" style="border-radius: 20px; overflow: hidden; transition: transform 0.3s ease; height: 400px;">
+                    <div class="card-body" style="background-color: #f4f6f9; padding: 30px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <!-- Add image inside the card -->
+                        <img src="{% static 'userapp/images/jobdetails3.webp' %}" alt="Marketing Specialist" style="width: 100%; max-height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
                         <h5 class="card-title" style="color: #1861bf; font-family: 'Roboto', sans-serif; font-size: 1.25rem; font-weight: bold;">Marketing Specialist</h5>
                         <p class="card-text" style="color: #545d68; font-size: 1rem; line-height: 1.5;">Develop creative strategies and campaigns to drive brand success globally.</p>
                         <a href="/login/" class="btn custom-btn-primary" style="background-color: #1861bf; color: #ffffff; border-radius: 30px; padding: 12px 24px; font-size: 1rem; transition: background-color 0.3s ease;">
@@ -142,11 +147,6 @@
     </div>
 </section>
 
-
-            <!-- Duplicate Logos for Seamless Scroll -->
-        </div>
-    </div>
-</section>
 
 <style>
 /* Smooth Scroll Animation */

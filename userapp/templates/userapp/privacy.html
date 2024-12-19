@@ -4,7 +4,9 @@
 {%block head2%}{%endblock%}
 
 {% block content %}
-<div class="container my-5">
+<body style="background-image: url('/static/userapp/images/background6.jpg'); background-size: cover; background-position: center; height: 100vh; width: 100%; position: relative; margin: 0; padding: 0; overflow: hidden;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url('/static/userapp/images/background6.jpg'); background-size: cover; background-position: center; filter: blur(8px); z-index: -1;"></div>
+<div class="container my-5" style="color: white;">
     <div class="row">
         <div class="col-md-12 text-center" style="margin-top: 100px;">
             <h1>Privacy Policy</h1>
@@ -25,4 +27,11 @@
         </div>
     </div>
 </div>
+
+<footer style="background-color: black;color: white;margin-top: 220px;">
+    <div class="text-center mt-4" style="border-top: 1px solid #ccc; padding-top: 20px;">
+        <p>&copy; 2024 CareerQuest. All rights reserved.</p>
+    </div>
+    </footer>
+    {%block footer%}{%endblock%}
 {% endblock %}
