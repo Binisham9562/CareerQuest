@@ -1,0 +1,190 @@
+{% extends 'userapp/base.html' %}
+{% load static %}
+
+{% block title %}My Applications{% endblock %}
+
+
+{% block content %}
+<section class="job-process py-5" style="background-image: url('/static/userapp/images/back.jpg'); background-size: cover; background-position: center center; padding: 50px 0;">
+    <h2 class="text-center" style="color: #1861bf; font-family: 'Poppins', sans-serif; font-size: 2.5rem; margin-bottom: 2rem;">Job Process</h2>
+    <div class="container-fluid mt-5">
+        <div class="row justify-content-center">
+            <!-- Step 1: Account Create -->
+            <div class="col-12 col-md-3 mb-4 text-center">
+                <div class="circle-box animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="circle-content" style="background: linear-gradient(135deg, #1861bf, #dd58ac); color: white;">
+                        <p style="font-size: 1.4rem; font-weight: 600; margin: 0;">Account Create</p>
+                        <p style="font-size: 1rem; font-weight: 400; margin-top: 10px;">Create your account to start your job search journey.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Step 2: Upload Resume -->
+            <div class="col-12 col-md-3 mb-4 text-center">
+                <div class="circle-box animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="circle-content" style="background: linear-gradient(135deg, #1861bf, #0baa41); color: white;">
+                        <p style="font-size: 1.4rem; font-weight: 600; margin: 0;">Upload Resume</p>
+                        <p style="font-size: 1rem; font-weight: 400; margin-top: 10px;">Upload your resume to showcase your skills and experience.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Step 3: Find Jobs -->
+            <div class="col-12 col-md-3 mb-4 text-center">
+                <div class="circle-box animate__animated animate__fadeIn animate__delay-3s">
+                    <div class="circle-content" style="background: linear-gradient(135deg, #1861bf, #0baa41); color: white;">
+                        <p style="font-size: 1.4rem; font-weight: 600; margin: 0;">Find Jobs</p>
+                        <p style="font-size: 1rem; font-weight: 400; margin-top: 10px;">Browse through available job listings and find the right match.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Step 4: Apply Jobs -->
+            <div class="col-12 col-md-3 mb-4 text-center">
+                <div class="circle-box animate__animated animate__fadeIn animate__delay-4s">
+                    <div class="circle-content" style="background: linear-gradient(135deg, #1861bf, #dd58ac); color: white;">
+                        <p style="font-size: 1.4rem; font-weight: 600; margin: 0;">Apply Jobs</p>
+                        <p style="font-size: 1rem; font-weight: 400; margin-top: 10px;">Submit your applications and start your journey to a new career.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="featured-jobs py-6" style="background-image: url('static/userapp/images/back.jpg'); background-size: cover; background-position: center center; padding: 50px 0;">
+    <h3 class="text-center featured-heading" style="color: #1861bf; font-family: 'Poppins', sans-serif; font-size: 2.5rem; font-weight: bold;">Top Featured Jobs</h3>
+    <div class="container">
+        <div class="row">
+            <!-- Job Card 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-lg job-card animate__animated animate__fadeInUp" style="border-radius: 20px; overflow: hidden; transition: transform 0.3s ease;">
+                    <div class="card-body" style="background-color: #f4f6f9; padding: 30px;">
+                        <h5 class="card-title" style="color: #1861bf; font-family: 'Roboto', sans-serif; font-size: 1.25rem; font-weight: bold;">Software Engineer</h5>
+                        <p class="card-text" style="color: #545d68; font-size: 1rem; line-height: 1.5;">Join a leading tech company to innovate and shape the future of technology.</p>
+                        <a href="/login/" class="btn custom-btn-primary" style="background-color: #1861bf; color: #ffffff; border-radius: 30px; padding: 12px 24px; font-size: 1rem; transition: background-color 0.3s ease;">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job Card 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-lg job-card animate__animated animate__fadeInUp animate__delay-1s" style="border-radius: 20px; overflow: hidden; transition: transform 0.3s ease;">
+                    <div class="card-body" style="background-color: #f4f6f9; padding: 30px;">
+                        <h5 class="card-title" style="color: #1861bf; font-family: 'Roboto', sans-serif; font-size: 1.25rem; font-weight: bold;">Data Scientist</h5>
+                        <p class="card-text" style="color: #545d68; font-size: 1rem; line-height: 1.5;">Collaborate with industry experts to derive actionable insights from big data.</p>
+                        <a href="/login/" class="btn custom-btn-primary" style="background-color: #1861bf; color: #ffffff; border-radius: 30px; padding: 12px 24px; font-size: 1rem; transition: background-color 0.3s ease;">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job Card 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-lg job-card animate__animated animate__fadeInUp animate__delay-2s" style="border-radius: 20px; overflow: hidden; transition: transform 0.3s ease;">
+                    <div class="card-body" style="background-color: #f4f6f9; padding: 30px;">
+                        <h5 class="card-title" style="color: #1861bf; font-family: 'Roboto', sans-serif; font-size: 1.25rem; font-weight: bold;">Marketing Specialist</h5>
+                        <p class="card-text" style="color: #545d68; font-size: 1rem; line-height: 1.5;">Develop creative strategies and campaigns to drive brand success globally.</p>
+                        <a href="/login/" class="btn custom-btn-primary" style="background-color: #1861bf; color: #ffffff; border-radius: 30px; padding: 12px 24px; font-size: 1rem; transition: background-color 0.3s ease;">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="moving-logos py-5 bg-light" style="width: 100%; margin: 0; padding: 0;">
+    <h3 class="text-center" style="color: #1861bf; font-family: 'Poppins', sans-serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 2rem;">
+        Get Dream With Top Companies
+    </h3>
+    <div class="logo-slider mt-4" style="position: relative; overflow: hidden;">
+        <!-- Scrolling Content -->
+        <div class="slider-wrapper" style="display: flex; flex-wrap: nowrap; animation: scrollLeft 20s linear infinite;">
+            <!-- Company Logos -->
+            <div class="logo-item text-center" style="margin: 0 20px;">
+                <img src="/static/userapp/images/company1.webp" alt="Google" class="logo-img" style="width: 350px; height: 200px; border-radius: 15px;">
+                <p class="logo-caption">Google - California</p>
+            </div>
+            <div class="logo-item text-center" style="margin: 0 20px;">
+                <img src="/static/userapp/images/accenture.jpg" alt="Accenture" class="logo-img" style="width: 350px; height: 200px; border-radius: 15px;">
+                <p class="logo-caption">Accenture - Dublin</p>
+            </div>
+            <div class="logo-item text-center" style="margin: 0 20px;">
+                <img src="/static/userapp/images/microsoft.jpg" alt="Microsoft" class="logo-img" style="width: 350px; height: 200px; border-radius: 15px;">
+                <p class="logo-caption">Microsoft - Seattle</p>
+            </div>
+            <div class="logo-item text-center" style="margin: 0 20px;">
+                <img src="/static/userapp/images/amazon.jpg" alt="Amazon" class="logo-img" style="width: 350px; height: 200px; border-radius: 15px;">
+                <p class="logo-caption">Amazon - New York</p>
+            </div>
+            <div class="logo-item text-center" style="margin: 0 20px;">
+                <img src="/static/userapp/images/facebook-1.webp" alt="Facebook" class="logo-img" style="width: 350px; height: 200px; border-radius: 15px;">
+                <p class="logo-caption">Facebook - London</p>
+            </div>
+            <div class="logo-item text-center" style="margin: 0 20px;">
+                <img src="/static/userapp/images/apple.webp" alt="Apple" class="logo-img" style="width: 350px; height: 200px; border-radius: 15px;">
+                <p class="logo-caption">Apple - San Francisco</p>
+            </div>
+            <div class="logo-item text-center" style="margin: 0 20px;">
+                <img src="/static/userapp/images/ibm.jpg" alt="IBM" class="logo-img" style="width: 350px; height: 200px; border-radius: 15px;">
+                <p class="logo-caption">IBM - Tokyo</p>
+            </div>
+            <div class="logo-item text-center" style="margin: 0 20px;">
+                <img src="/static/userapp/images/samsung.jpg" alt="Samsung" class="logo-img" style="width: 350px; height: 200px; border-radius: 15px;">
+                <p class="logo-caption">Samsung - Seoul</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+            <!-- Duplicate Logos for Seamless Scroll -->
+        </div>
+    </div>
+</section>
+
+<style>
+/* Smooth Scroll Animation */
+@keyframes scrollLeft {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* General Styling */
+.moving-logos {
+    background: #f8f9fa;
+}
+
+.logo-img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.logo-img:hover {
+    transform: scale(1.1);
+}
+
+.logo-caption {
+    color: #545d68;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin-top: 10px;
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+{%endblock%}   
+
+

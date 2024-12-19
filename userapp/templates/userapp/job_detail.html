@@ -1,0 +1,124 @@
+{% extends 'userapp/base.html' %}
+
+{% block title %}My Applications{% endblock %}
+
+{% block nav_links %}
+    <a href="/home/" class="px-3">Home</a>
+    <a href="/jobseeker_dashboard" class="px-3">Dashboard</a>
+    <a href="/logout/" class="btn btn-outline-danger px-4 py-2 ms-3">Logout</a>
+{% endblock %}
+
+
+{% block head2 %}{%endblock%}
+{%block content%}
+    <style>
+        /* body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 50px;
+        } */
+        .job-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 150px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        
+            
+        }
+        .job-header {
+            text-align: center;
+            margin-bottom: 30px;
+            
+        }
+        .job-header h2 {
+            font-size: 28px;
+            color: #1861bf;
+            margin-bottom: 10px;
+        }
+        .job-header p {
+            font-size: 16px;
+            color: #555;
+        }
+        .job-details {
+            margin-bottom: 20px;
+        }
+        .job-details h5 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .job-details p {
+            font-size: 16px;
+            color: #555;
+        }
+        .apply-button {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .apply-button a {
+            background-color: #1861bf;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .apply-button a:hover {
+            background-color: #220a8a;
+        }
+    </style>
+</head>
+<body>
+
+<div class="job-detail-container" >
+    <!-- Job Header -->
+    <div class="job-header">
+        <h2>{{ job.job_title }}</h2>
+        <p><strong>Company:</strong> {{ job.company_name }}</p>
+        <p><strong>Location:</strong> {{ job.location }}</p>
+    </div>
+
+    <!-- Job Details -->
+    <div class="job-details">
+        <h5>Job Description</h5>
+        <p>{{ job.job_description }}</p>
+    </div>
+
+    <div class="job-details">
+        <h5>Qualifications</h5>
+        <p>{{ job.qualifications }}</p>
+    </div>
+
+    <div class="job-details">
+        <h5>Requirements</h5>
+        <p>{{ job.requirements }}</p>
+    </div>
+
+    <div class="job-details">
+        <h5>Salary</h5>
+        <p>₹{{ job.salary_range }} per annum</p>
+    </div>
+
+    <div class="job-details">
+        <h5>Job Type</h5>
+        <p>{{ job.job_type }}</p>
+    </div>
+
+    <div class="job-details">
+        <h5>Closing Date</h5>
+        <p>{{ job.closing_date }}</p>
+    </div>
+
+    <!-- Apply Button -->
+    <div class="apply-button">
+        <a href="{% url 'apply_job' job.id %}">Apply Now</a>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{%endblock%}

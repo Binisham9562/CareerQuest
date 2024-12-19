@@ -1,0 +1,143 @@
+<!-- post_job.html -->
+{% extends 'userapp/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+
+{% block nav_links %}
+    <a href="/home/" class="px-3">Home</a>
+    <a href="{% url 'employer_dashboard' %}" class="px-3">Back</a>
+    <a href="/logout/" class="btn btn-outline-danger px-4 py-2 ms-3">Logout</a>
+{% endblock %}
+
+
+{% block head2 %} {% endblock %}
+
+{% block content %}
+    <style>
+        /* body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px; */
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h2 {
+            margin-bottom: 70px;
+            font-size: 24px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group input[type="submit"] {
+            background-color: #1861bf;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #0baa41;
+        }
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            max-width: 300px;
+            transition: opacity 1s ease-out; /* Add a transition for opacity */
+            opacity: 1; /
+        }
+        #message-alert {
+            transition: opacity 1s ease-out;
+}
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Post a Job</h2>
+
+    <!-- Displaying messages -->
+    {% if messages %}
+        <div class="alert alert-success" role="alert" id="message-alert">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="job_title">Job Title</label>
+            {{ form.job_title }}
+        </div>
+        <div class="form-group">
+            <label for="company_name">Company Name</label>
+            {{ form.company_name }}
+        </div>
+        <div class="form-group">
+            <label for="job_description">Job Description</label>
+            {{ form.job_description }}
+        </div>
+        <div class="form-group">
+            <label for="qualifications">Qualifications</label>
+            {{ form.qualifications }}
+        </div>
+        <div class="form-group">
+            <label for="requirements">Requirements</label>
+            {{ form.requirements }}
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            {{ form.location }}
+        </div>
+        <div class="form-group">
+            <label for="salary_range">Salary</label>
+            {{ form.salary_range }}
+        </div>
+        <div class="form-group">
+            <label for="job_type">Job Type</label>
+            {{ form.job_type }}
+        </div>
+        <div class="form-group">
+            <label for="closing_date">Closing Date</label>
+            {{ form.closing_date }}
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Post Job">
+        </div>
+    </form>
+</div>
+
+<script>
+    // Check if the alert exists, and remove it after 3 seconds
+    const alertElement = document.getElementById("message-alert");
+    if (alertElement) {
+        setTimeout(() => {
+        alertElement.style.opacity = 0; // Fade out the element
+        setTimeout(() => {
+            alertElement.remove(); // Remove the element after the fade-out
+        }, 1000); // Wait for 1 second (matches the CSS transition time)
+    }, 3000); // Wait for 3 seconds before starting the fade-out
+}
+</script>
+
+{%endblock%}

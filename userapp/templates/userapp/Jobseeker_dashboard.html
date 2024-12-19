@@ -1,0 +1,275 @@
+{%load static%}
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color:#f8f9fa;
+            margin: 0;
+            padding: 0;
+
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            background-color: #1861bf;
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 90;
+            left: 0;
+            padding: 30px 15px;
+            color: #fff;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .sidebar a {
+            color: #fff;
+            font-size: 16px;
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #0c1486;
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            margin-left: 270px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .job-listing {
+            width: 75%;
+        }
+
+        .header1 {
+            background-color: #f1ebeb;
+            border-bottom: 1px solid #eeeeee;
+            
+            
+        } 
+
+        .header1 .logo {
+            height: 150px;
+        }
+
+        .right-content {
+            width: 23%;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-left: 10px;
+            
+        }
+
+        .right-content h5 {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        /* Job Post Styling */
+        .job-post {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .job-post:hover {
+            transform: translateY(-5px);
+        }
+
+        .job-post img {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+
+        .job-details {
+            flex-grow: 1;
+        }
+
+        .job-details h5 {
+            margin: 0 0 10px 0;
+            font-size: 25px;
+            color: #1861bf;
+        }
+
+        .job-details p {
+            margin: 0;
+            font-size: 17px;
+            color: #555;
+        }
+
+        .job-actions {
+            text-align: right;
+        }
+
+        .btn-view {
+            background-color: #1861bf;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-view:hover {
+            background-color: #041338;
+        }
+
+        /* Flash Messages */
+        .alert {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+                padding: 15px;
+                flex-direction: column;
+            }
+
+            .sidebar {
+                height: auto;
+                position: relative;
+                width: 100%;
+            }
+
+            .job-post {
+                flex-wrap: wrap;
+                text-align: center;
+            }
+
+            .job-actions {
+                margin-top: 10px;
+            }
+
+            .right-content {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header1 py-3" style="background-color:#FAFAFA; position: fixed; top: 0; left: 0; width: 100%; z-index: 100;">
+        <div class="container d-flex justify-content-between align-items-center">
+            <!-- Logo Section -->
+            <a href="/">
+                <img src="{% static 'userapp/images/logo.png' %}" alt="CareerQuest Logo" class="logo" style="max-height: 55px; width: 80px;">  
+        </div>
+    </header>
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>CareerQuest</h2>
+        <a href="{% url 'jobseeker_dashboard' %}">Dashboard</a>
+        <a href="{% url 'view_profile_jobseeker' %}">My Profile</a>
+        <a href="{% url 'my_applications' %}">My Applications</a>
+        <a href="{% url 'account_settings' %}">Account Settings</a>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Job Listings -->
+        <div class="job-listing">
+            <!-- Flash Messages -->
+            {% if messages %}
+                <div class="alert alert-info">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <h3>Available Job Posts</h3>
+
+            {% for job in jobs %}
+                <div class="job-post">
+                    <!-- Placeholder for company logo -->
+                    <!-- <img src="{% if job.employer.employerprofile.company_logo %}{{ job.employer.employerprofile.company_logo.url }}{% else %}/static/images/default_logo.png{% endif %}" alt="Company Logo" class="company-logo"> -->
+
+                    <div class="job-details">
+                        <h5>{{ job.job_title }}</h5>
+                        <p><strong>Company:</strong> {{ job.company_name }}</p>
+                        <p><strong>Location:</strong> {{ job.location }}</p>
+                        <p><strong>Salary:</strong> ₹{{ job.salary_range }} per annum</p>
+                        <p><strong>Job Type:</strong> {{ job.job_type }}</p>
+                    </div>
+
+                    <div class="job-actions">
+                        <a href="{% url 'job_detail' job.id %}" class="btn-view">View Details</a>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No job posts available at the moment. Please check back later.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Right Content -->
+        <div class="right-content">
+            <h5>Quick Links</h5>
+            <ul>
+                <li><a href="{% url 'edit_resume' %}">Update Resume</a></li>
+                <li><a href="{% url 'account_settings' %}">Change Password</a></li>
+                <li><a href="{% url 'my_applications' %}">View Applications</a></li>
+            </ul>
+
+            <h5>Your Profile</h5>
+            <p><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all elements with the 'alert' class
+        const messages = document.querySelectorAll('.alert');
+        
+        // Loop through each message and remove it after 3 seconds
+        messages.forEach(function(message) {
+            setTimeout(function() {
+                message.style.transition = "opacity 0.5s ease-out";
+                message.style.opacity = 0;
+                
+                setTimeout(function() {
+                    message.remove();
+                }, 500); // Remove the message after the fade-out transition
+            }, 3000); // Wait for 3 seconds before starting the fade-out
+        });
+    });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+

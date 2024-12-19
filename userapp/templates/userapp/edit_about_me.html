@@ -1,0 +1,40 @@
+{% extends 'userapp/base.html' %}
+
+{% block title %}edit profile{% endblock %}
+
+{% block nav_links %}
+    <a href="/home/" class="px-3">Home</a>
+    <a href="/jobseeker_dashboard" class="px-3">Dashboard</a>
+    <a href="/logout/" class="btn btn-outline-danger px-4 py-2 ms-3">Logout</a>
+{% endblock %}
+{% block head2 %} {% endblock %}
+
+{% block content %}
+<div class="container mt-5" >
+    <div class="row justify-content-center" style="margin-top: 150px;">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header custom-card-header text-center">
+                    <h4 class="fw-bold">Edit About Me</h4>
+                    <p class="mb-0 small">Share more about yourself to enhance your profile.</p>
+                </div>
+                <div class="card-body px-4 py-5">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group mb-4">
+                            <label for="id_about_me" class="form-label fw-bold">About Me</label>
+                            {{ form.about_me }}
+                        </div>
+                        <div class="d-grid gap-3">
+                            <button type="submit" class="btn custom-btn-primary btn-lg"  style="width: 300px;">Save Changes</button>
+                            <a href="{% url 'view_profile_jobseeker' %}" class="btn custom-btn-secondary btn-lg">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%block footer%}{%endblock%}
+{% endblock %}

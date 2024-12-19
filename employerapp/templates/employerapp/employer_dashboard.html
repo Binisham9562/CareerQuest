@@ -1,0 +1,270 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Dashboard</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Section */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color:#FAFAFA ;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 15px;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .header a:hover {
+            color: #1861bf;
+        }
+
+        .header .logo img {
+            max-height: 50px;
+            width: auto;
+        }
+
+        .header .btn {
+            color: #1861bf;
+            border: 1px solid #1861bf;
+            padding: 5px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .header .btn:hover {
+            background-color: #1861bf;
+            color: white;
+        }
+
+        /* Sidebar Section */
+        .sidebar-left {
+            width: 250px;
+            background-color: #1861bf;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .sidebar-left h3 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .sidebar-left a {
+            color: white;
+            text-decoration: none;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar-left a:hover {
+            background-color: #1451a3;
+        }
+
+        /* Main Content Section */
+        .main-content {
+            margin-left: 270px; /* Adjust for the sidebar */
+            margin-top: 100px; /* Adjust for the fixed header */
+            padding: 20px;
+        }
+
+        .dashboard {
+            max-width: 1200px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #1861bf;
+            text-align: center;
+        }
+
+        .summary-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .summary-stats h3 {
+            background-color: #1861bf;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            flex: 1;
+            margin: 10px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .image-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .image-section img {
+            max-width: 700px;
+            height: 500px;
+            border-radius: 8px;
+        }
+
+        .intro-section {
+            background-color: #f0f8ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .intro-section h3 {
+            color: #0baa41;
+        }
+
+        .intro-section p {
+            color: #545d68;
+            line-height: 1.6;
+        }
+
+        @media screen and (max-width: 768px) {
+            .summary-stats {
+                flex-direction: column;
+            }
+
+            .summary-stats h3 {
+                margin: 10px 0;
+            }
+
+            .sidebar-left {
+                width: 200px;
+            }
+
+            .main-content {
+                margin-left: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <a href="/" class="logo">
+            <img src="{% static 'userapp/images/logo.png' %}" alt="CareerQuest Logo" class="logo" style="max-height: 55px; width: 80px;">
+            
+        </a>
+        <nav>
+            <a href="/home/">Home</a>
+            <a href="/logout/" class="btn">Log out</a>
+        </nav>
+    </header>
+
+    <!-- Left Sidebar -->
+    <div class="sidebar-left">
+        <h3>Menu</h3>
+        <a href="{% url 'employer_dashboard' %}">Dashboard</a>
+        <a href="{% url 'post_job' %}">Post Job</a>
+        <a href="{% url 'employer_applications' %}">View Applications</a>
+        <a href="{% url 'view_profile_employer' %}">Account</a>
+        <a href="{% url 'employer_jobs' %}">Posted Jobs</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="dashboard">
+            <h1>Employer Dashboard</h1>
+
+            <!-- Image Section -->
+            <div class="image-section">
+                <img src="{% static 'userapp/images/login.jpg' %}" alt="Dashboard Image">
+            </div>
+
+            <!-- Introduction Section -->
+            <div class="intro-section">
+                <h3>Welcome to Your Dashboard!</h3>
+                <p>Here, you can manage your job postings, track applications, and view the overall progress of your hiring process. Use the information below to get a better insight into your current recruitment efforts.</p>
+            </div>
+
+            <!-- Summary Stats Section -->
+            <div class="summary-stats">
+                <h3>Total Job Posts: {{ total_job_posts }}</h3>
+                <h3>Total Applications: {{ total_applications }}</h3>
+            </div>
+
+            <!-- Applications per Job -->
+            <h3>Applications per Job</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Job Title</th>
+                        <th>Applications Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in applications_per_job %}
+                        <tr>
+                            <td>{{ job.job__job_title }}</td>
+                            <td>{{ job.application_count }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

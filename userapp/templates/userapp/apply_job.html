@@ -1,0 +1,87 @@
+{% extends 'userapp/base.html' %}
+
+{% block title %}My Applications{% endblock %}
+
+{% block nav_links %}
+    <a href="/home/" class="px-3">Home</a>
+    <a href="/jobseeker_dashboard" class="px-3">Dashboard</a>
+    <a href="/logout/" class="btn btn-outline-danger px-4 py-2 ms-3">Logout</a>
+{% endblock %}
+
+
+{% block head2 %} {% endblock %}
+{%block content%}
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* body {
+            background-color: #f8f9fa;
+            font-family: 'Roboto', sans-serif;
+            padding-top: 50px;
+        } */
+        .apply-job-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 80px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 100px;
+        }
+        .apply-job-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #1861bf;
+        }
+        .form-group label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group input[type="submit"] {
+            background-color: #1861bf;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #05195c;
+        }
+    </style>
+</head>
+<body style="background-color: #f6f9fc;">
+
+<div class="apply-job-container">
+    <h2>Apply for {{ job.job_title }}</h2>
+    <p><strong>Company:</strong> {{ job.company_name }}</p>
+    <p><strong>Location:</strong> {{ job.location }}</p>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="cover_letter">Cover Letter</label>
+            {{ form.cover_letter }}
+        </div>
+        <div class="form-group">
+            <label for="resume">Upload Resume</label>
+            {{ form.resume }}
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit Application">
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{%endblock%}

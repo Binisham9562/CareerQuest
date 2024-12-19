@@ -1,0 +1,33 @@
+{% extends 'userapp/base.html' %}
+{%load static%}
+{% block title %}About Us{% endblock %}
+
+{%block head2%}{%endblock%}
+
+{% block content %}
+<body style="background-color: white;">
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-12 text-center" style="margin-top: 100px;">
+            <h1>About CareerQuest</h1>
+            <p class="lead">Connecting job seekers with top companies to achieve career goals.</p>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <img src="{% static 'userapp/images/job7.jpg' %}" alt="About Us" class="img-fluid rounded shadow">
+        </div>
+        <div class="col-md-6">
+            <p>
+                CareerQuest is a platform dedicated to connecting job seekers with top companies, helping them achieve their career goals.
+                Our mission is to bridge the gap between talent and opportunity by providing tools, resources, and support for job seekers
+                and employers alike.
+            </p>
+            <p>
+                Founded in 2024, CareerQuest has grown into a trusted job portal, catering to various industries and professionals. We strive
+                to create an accessible, professional, and user-friendly experience for all our users.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,190 @@
+{% extends 'userapp/base.html' %}
+
+{% block title %}My Applications{% endblock %}
+
+{% block nav_links %}
+    <a href="/home/" class="px-3">Home</a>
+    <a href="/logout/" class="btn btn-outline-danger px-4 py-2 ms-3">Logout</a>
+{% endblock %}
+
+
+{% block head2 %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for My Applications page */
+    html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Flexbox layout for the body to push footer to the bottom */
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+}
+
+/* The main content area (applications container) will take all available space */
+.applications-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    flex-grow: 1; 
+}
+
+.applications-container h2 {
+    font-size: 28px;
+    color: #00989d;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.applications-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 50px;
+}
+
+.applications-container table th, .applications-container table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.applications-container table th {
+    background-color:#1861bf;
+    color: white;
+}
+
+.applications-container table td {
+    font-size: 14px;
+    color: #555;
+}
+
+.applications-container table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.actions-btn {
+    padding: 8px 16px;
+    background-color: #00989d;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.actions-btn:hover {
+    background-color: #0baa41;
+}
+
+.no-applications {
+    font-size: 16px;
+    text-align: center;
+    color: #777;
+}
+
+.cover-letter {
+    font-size: 12px;
+    color: #555;
+    text-align: justify;
+    margin-bottom: 5px;
+}
+
+.resume-link {
+    font-size: 14px;
+    color: #00989d;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.resume-link:hover {
+    color: #0baa41;
+}
+
+/* Ensure the footer is pushed to the bottom */
+footer {
+    background-color:black;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    margin-top: auto;  
+    color:white;/* This ensures the footer always stays at the bottom */
+}
+
+.badge-success {
+    background-color: #0baa41;
+    color: white; /* Ensure text is visible */
+}
+
+.badge-danger {
+    background-color: #dc3545;
+    color: white; /* Ensure text is visible */
+}
+
+.badge-warning {
+    background-color: #ffc107;
+    color: black; /* Ensure text is visible */
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Make sure the body takes at least full screen height */
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .applications-container table {
+        font-size: 14px;
+    }
+
+    .applications-container h2 {
+        font-size: 24px;
+    }
+}
+    </style>
+{% endblock %}
+
+{% block content %}
+<body class="page-wrapper">
+    <div class="applications-container">
+        <h2>My Applications</h2>
+
+        {% if applications %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Job Title</th>
+                        <th>Company</th>
+                        <th>Status</th>
+                        <th>Applied On</th>
+                        <th>Cover Letter</th>
+                        <th>Resume</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for application in applications %}
+                        <tr>
+                            <td>{{ application.job.job_title }}</td>
+                            <td>{{ application.job.company_name }}</td>
+                            <td>
+                                <span class="badge {% if application.status == 'accepted' %}badge-success{% elif application.status == 'rejected' %}badge-danger{% else %}badge-warning{% endif %}">
+                                    {{ application.status|capfirst }}
+                                </span>
+                            </td>
+                            <td>{{ application.applied_on|date:"d M Y, H:i" }}</td>
+                            <td class="cover-letter">{{ application.cover_letter|truncatewords:10 }}</td>
+                            <td><a href="{{ application.resume.url }}" class="resume-link" target="_blank">View Resume</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="no-applications">You haven't applied for any jobs yet. Check out our job listings to get started!</p>
+        {% endif %}
+    </div>
+
+{% endblock %}

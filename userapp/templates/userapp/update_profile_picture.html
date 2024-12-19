@@ -1,0 +1,124 @@
+{% extends 'userapp/base.html' %}
+{%load static%}
+{% block title %}Update Profile Picture{% endblock %}
+{% block nav_links %}
+<a href="/home/" class="px-3">Home</a>
+    <a href="/jobseeker_dashboard" class="px-3">Dashboard</a>
+    
+    <a href="/logout/" class="btn btn-outline-danger px-4 py-2 ms-3">Logout</a>
+{% endblock %}
+
+{%block head2%}{%endblock%}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center" style="margin-top: 100px;">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header custom-card-header text-center">
+                    <h4 class="fw-bold">Update Profile Picture</h4>
+                    <p class="mb-0 small">Make your profile stand out with a professional photo.</p>
+                </div>
+                <div class="card-body px-4 py-5">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="text-center mb-4">
+                            <img 
+                                src="{% static 'default-profile.png' %}" 
+                                alt="Profile pic" 
+                                class="img-thumbnail rounded-circle shadow-sm" 
+                                style="width: 200px; height: 200px;"
+                                id="profilePreview"
+                            >
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="id_profile_picture" class="form-label fw-bold">Upload New Picture</label>
+                            {{ form.profile_picture }}
+                        </div>
+                        <div class="d-grid gap-3">
+                            <button type="submit" class="btn custom-btn-primary btn-lg" style="width: 250px;">Save Changes</button>
+                            <a href="{% url 'view_profile_jobseeker' %}" class="btn custom-btn-secondary btn-lg">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Real-time Profile Picture Preview
+    document.querySelector('#id_profile_picture').addEventListener('change', function(event) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.querySelector('#profilePreview').src = e.target.result;
+        };
+        if (event.target.files.length) {
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+</script>
+{% endblock %}
+<style>
+:root {
+    --primary-color: #1861bf; /* Blue */
+    --secondary-color: #545d68; /* Gray */
+    --success-color: #0baa41; /* Green */
+    --danger-color: #dd58ac; /* Pink */
+    --background-color: #f8f9fa; /* Light Background */
+}
+
+/* Navbar */
+.custom-navbar {
+    background-color: var(--background-color);
+}
+
+.custom-brand {
+    color: var(--primary-color) !important;
+}
+
+.custom-link {
+    color: var(--secondary-color) !important;
+}
+
+.custom-btn-danger {
+    background-color: var(--danger-color);
+    color: #fff;
+    border: none;
+}
+
+.custom-btn-danger:hover {
+    background-color: #c04d9a;
+}
+
+/* Card Header */
+.custom-card-header {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* Buttons */
+.custom-btn-primary {
+    background-color: var(--success-color);
+    color: #fff;
+    border: none;
+}
+
+.custom-btn-primary:hover {
+    background-color: #089036;
+}
+
+.custom-btn-secondary {
+    background-color: var(--secondary-color);
+    color: #fff;
+    border: none;
+}
+
+.custom-btn-secondary:hover {
+    background-color: #3d464e;
+}
+
+/* Form */
+.form-label {
+    color: var(--secondary-color);
+}
+</style>

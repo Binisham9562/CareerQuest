@@ -1,0 +1,290 @@
+{% extends 'userapp/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+
+{% block nav_links %}
+    <a href="/home/" class="px-3">Home</a>
+    <a href="/logout/" class="btn btn-outline-danger px-4 py-2 ms-3">Logout</a>
+{% endblock %}
+
+{% block head2 %}
+<section class="marquee-bar" style="background-color:#fbf9f9; padding: 8px 0;">
+    <div class="container">
+        <div class="marquee-content">
+            <span class="marquee-text">Welcome to CareerQuest! Find your dream job with us. New jobs posted daily. Explore exciting opportunities today!</span>
+        </div>
+    </div>
+    </section> {% endblock %}
+
+{% block content %}
+<style>
+    /* .container {
+        max-width: 1200px;
+        margin-top: 30px;
+        background-color: #f7f9fc;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    } */
+
+    h2 {
+        color: #1861bf;
+        text-align: center;
+        margin-bottom: 40px;
+        width: 100%;
+    }
+
+    .form-section {
+        flex: 1;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-section label {
+        color: #3a4b9a;
+        font-weight: bold;
+    }
+
+    .form-section input,
+    .form-section select,
+    .form-section textarea {
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .form-section input[type="file"] {
+        border: 1px solid #1861bf;
+        background-color: #ffffff;
+        color: #1861bf;
+        font-size: 16px;
+        padding: 10px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .form-section input[type="file"]:hover {
+        background-color: #1861bf;
+        color: #ffffff;
+    }
+
+    .btn-primary {
+        background-color: #1861bf;
+        border: none;
+        color: white;
+        font-size: 16px;
+        padding: 12px 30px;
+        width: 100%;
+        cursor: pointer;
+        border-radius: 8px;
+        margin-top: 20px;
+    }
+
+    .btn-primary:hover {
+        background-color: #64c8fa;
+    }
+
+    .profile-image-container {
+        flex: 0.8;
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .profile-image-container img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .text-danger {
+        color: #ff5c5c;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+        }
+
+        .form-section,
+        .profile-image-container {
+            margin: 10px 0;
+        }
+    }
+</style>
+<body>
+    <div class="container">
+        <h2>Create Your Job Seeker Profile</h2>
+
+        <!-- Left Section: Form -->
+        <div class="form-section">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <!-- Profile Picture -->
+                <div class="form-group">
+                    <label for="id_profile_picture">Profile Picture</label>
+                    <input type="file" id="id_profile_picture" name="profile_picture" accept="image/*" onchange="previewImage(event)">
+                    {% if form.profile_picture.errors %}
+                        <div class="text-danger">
+                            {% for error in form.profile_picture.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- About Me -->
+                <div class="form-group">
+                    <label for="id_about_me">About Me</label>
+                    {{ form.about_me }}
+                    {% if form.about_me.errors %}
+                        <div class="text-danger">
+                            {% for error in form.about_me.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- GitHub Link -->
+                <div class="form-group">
+                    <label for="id_github_link">GitHub Link</label>
+                    {{ form.github_link }}
+                    {% if form.github_link.errors %}
+                        <div class="text-danger">
+                            {% for error in form.github_link.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- LinkedIn Link -->
+                <div class="form-group">
+                    <label for="id_linkedin_link">LinkedIn Link</label>
+                    {{ form.linkedin_link }}
+                    {% if form.linkedin_link.errors %}
+                        <div class="text-danger">
+                            {% for error in form.linkedin_link.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Resume Upload -->
+                <div class="form-group">
+                    <label for="id_resume">Upload Your Resume</label>
+                    {{ form.resume }}
+                    {% if form.resume.errors %}
+                        <div class="text-danger">
+                            {% for error in form.resume.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Skills -->
+                <div class="form-group">
+                    <label for="id_skills">Skills</label>
+                    {{ form.skills }}
+                    {% if form.skills.errors %}
+                        <div class="text-danger">
+                            {% for error in form.skills.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Qualification -->
+                <div class="form-group">
+                    <label for="id_qualification">Qualification</label>
+                    {{ form.qualification }}
+                    {% if form.qualification.errors %}
+                        <div class="text-danger">
+                            {% for error in form.qualification.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Experience -->
+                <div class="form-group">
+                    <label for="id_experience">Experience</label>
+                    {{ form.experience }}
+                    {% if form.experience.errors %}
+                        <div class="text-danger">
+                            {% for error in form.experience.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Job Preferences -->
+                <div class="form-group">
+                    <label for="id_job_preferences">Job Preferences</label>
+                    {{ form.job_preferences }}
+                    {% if form.job_preferences.errors %}
+                        <div class="text-danger">
+                            {% for error in form.job_preferences.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Preferred Location -->
+                <div class="form-group">
+                    <label for="id_preferred_location">Preferred Location</label>
+                    {{ form.preferred_location }}
+                    {% if form.preferred_location.errors %}
+                        <div class="text-danger">
+                            {% for error in form.preferred_location.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Submit Button -->
+                <div>
+                    <button type="submit" class="btn btn-primary">Save Profile</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Right Section: Profile Image -->
+        
+    </div>
+
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const output = document.getElementById('profile-image');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+
+{%endblock%}

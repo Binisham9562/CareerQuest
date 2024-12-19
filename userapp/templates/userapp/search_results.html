@@ -1,0 +1,73 @@
+{% extends 'userapp/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+
+{% block nav_links %}
+    <a href="/home/" class="px-3">Home</a>
+    
+{% endblock %}
+{% block head2 %}
+<style>
+    .head2-background {
+  background-image: url('/static/userapp/images/search.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+</style>
+<div class="abc head2-background">
+    <div class="overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5);">
+        <div class="container d-flex justify-content-center align-items-center" style="height: 100%; color: white; text-align: center;">
+            <div>
+                <h1 style="font-size: 3rem; font-family: 'Poppins', sans-serif;">Your Next Career Opportunity Awaits</h1>
+                <p style="font-size: 1.2rem; margin: 20px 0; font-family: 'Roboto', sans-serif;">
+                    We’ve found jobs matching your search. Explore the listings and take the first step towards your dream job. The perfect opportunity is just a click away.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center" style="color: #1861bf;">Search Results</h1>
+    <p class="text-center text-muted">
+        {% if query %}
+            Showing results for: <strong>{{ query }}</strong>
+        {% else %}
+            Please enter a search query to find jobs.
+        {% endif %}
+    </p> 
+
+    <div class="row">
+        {% if results %}
+            {% for job in results %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ job.job_title }}</h5>
+                            <p class="card-text">
+                                Company: {{ job.company_name }}<br>
+                                Location: {{ job.location }}<br>
+                                Job Type: {{ job.get_job_type_display }}<br>
+                                Salary: {{ job.salary_range|default:"Not specified" }}
+                            </p>
+                            <a href="{% url 'job_detail' job.id %}" class="btn btn-primary" style="background-color: #081373;">
+                                View Job
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-center text-danger">No results found for your search.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splash Screen</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #2A4649; /* Your chosen color */
+        }
+        .splash-container {
+            text-align: center;
+        }
+        .animated-logo {
+            font-size: 2rem;
+            color: #FFFFFF; /* Your chosen color */
+            animation: fadein 2s ease-in-out;
+        }
+        @keyframes fadein {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden;
+            margin: 0; 
+            background-color: black;
+            display: flex;
+            justify-content: center; /* Horizontally centers the video */
+            align-items: center; /* Vertically centers the video *//* No margin between sections */
+        }
+
+        .video-container video {
+            width: 50%;
+            height:50%;
+            object-fit: cover;
+            /* Ensures the video covers the entire screen */
+        }
+        
+    </style>
+    <script>
+        // Redirect to the homepage after 3 seconds
+        setTimeout(() => {
+            window.location.href = "/home/";
+        }, 4000);
+    </script>
+</head>
+<body>
+    <div class="video-container">
+        <!-- <div class="animated-logo"> -->
+            <!-- Add your animation or logo here -->
+          
+              <video autoplay loop muted>
+                  <source src="{% static 'userapp/videos/logovideo.mp4' %}" type="video/mp4">
+                  Your browser does not support the video tag.
+              </video>
+          </div>
+        </div>
+    </div>
+</body>
+</html>

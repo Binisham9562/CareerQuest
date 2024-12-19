@@ -1,0 +1,96 @@
+{% extends 'userapp/base.html' %}
+
+{% block title %}Jobs{% endblock %}
+
+{% block head2 %} {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Edit Job Post: {{ job.job_title }}</h2>
+    
+    <!-- Display messages (success or error) -->
+    {% if messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} mt-2">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Job Details</h5>
+                        <p class="card-text mb-3">Edit the details for the job post below:</p>
+
+                        <!-- Job Title -->
+                        <div class="mb-3">
+                            <label for="id_job_title" class="form-label">Job Title</label>
+                            {{ form.job_title }}
+                        </div>
+
+                        <!-- Job Description -->
+                        <div class="mb-3">
+                            <label for="id_job_description" class="form-label">Job Description</label>
+                            {{ form.job_description }}
+                        </div>
+
+                        <!-- Qualifications -->
+                        <div class="mb-3">
+                            <label for="id_qualifications" class="form-label">Qualifications</label>
+                            {{ form.qualifications }}
+                        </div>
+
+                        <!-- Requirements -->
+                        <div class="mb-3">
+                            <label for="id_requirements" class="form-label">Requirements</label>
+                            {{ form.requirements }}
+                        </div>
+
+                        <!-- Location -->
+                        <div class="mb-3">
+                            <label for="id_location" class="form-label">Location</label>
+                            {{ form.location }}
+                        </div>
+
+                        <!-- Salary Range -->
+                        <div class="mb-3">
+                            <label for="id_salary_range" class="form-label">Salary Range (Optional)</label>
+                            {{ form.salary_range }}
+                        </div>
+
+                        <!-- Job Type -->
+                        <div class="mb-3">
+                            <label for="id_job_type" class="form-label">Job Type</label>
+                            {{ form.job_type }}
+                        </div>
+
+                        <!-- Closing Date -->
+                        <div class="mb-3">
+                            <label for="id_closing_date" class="form-label">Closing Date</label>
+                            {{ form.closing_date }}
+                        </div>
+
+                        <!-- Active Status -->
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="id_is_active" name="is_active" {% if form.is_active.value %}checked{% endif %}>
+                            <label class="form-check-label" for="id_is_active">Active Job Post</label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        
+        </div>
+    </div>
+</div>
+
+{% endblock %}

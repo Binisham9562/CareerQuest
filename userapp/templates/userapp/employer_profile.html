@@ -1,0 +1,260 @@
+{% extends 'userapp/base.html' %}
+{% block title %}edit profile{% endblock %}
+{% block nav_links %}
+    <a href="/home/" class="px-3">Home</a>
+    
+    <a href="/logout/" class="btn btn-outline-danger px-4 py-2 ms-3">Logout</a>
+{% endblock %}
+
+{% block head2 %} {% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+    <style>
+        /* Global Styles */
+        
+         
+
+        h2 {
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: #444;
+            font-size: 16px;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            height: 50px;
+        }
+
+        .form-control:focus {
+            border-color: #1A73E8;
+            box-shadow: 0 0 8px rgba(26, 115, 232, 0.3);
+        }
+
+        .form-control.error {
+            border-color: #e74c3c;
+            box-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+        }
+
+        .btn-primary {
+            background-color: #1A73E8;
+            border: none;
+            font-size: 16px;
+            padding: 12px 30px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #155b8a;
+        }
+
+        .text-danger {
+            font-size: 14px;
+            color: #e74c3c;
+        }
+
+        .text-center a {
+            font-size: 16px;
+            color: #1A73E8;
+            text-decoration: none;
+        }
+
+        .text-center a:hover {
+            text-decoration: underline;
+        }
+
+        .form-group .input-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .input-wrapper .form-control {
+            width: 100%;
+        }
+
+        .input-wrapper .text-danger {
+            margin-top: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin-top: 30px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            .btn-primary {
+                width: 100%;
+                font-size: 14px;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+        }
+
+    </style>
+</head>
+<body style="background-color: rgb(232, 236, 241);margin-top: 100px;">
+
+    <div class="container">
+        <h2>Create Your Employer Profile</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Company Name -->
+            <div class="form-group">
+                <label for="id_company_name">Company Name</label>
+                <div class="input-wrapper">
+                    {{ form.company_name }}
+                    {% if form.company_name.errors %}
+                        <div class="text-danger">
+                            {% for error in form.company_name.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Company Description -->
+            <div class="form-group">
+                <label for="id_company_description">Company Description</label>
+                <div class="input-wrapper">
+                    {{ form.company_description }}
+                    {% if form.company_description.errors %}
+                        <div class="text-danger">
+                            {% for error in form.company_description.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Company Logo -->
+            <div class="form-group">
+                <label for="id_company_logo">Company Logo</label>
+                <div class="input-wrapper">
+                    {{ form.company_logo }}
+                    {% if form.company_logo.errors %}
+                        <div class="text-danger">
+                            {% for error in form.company_logo.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Industry Type -->
+            <div class="form-group">
+                <label for="id_industry_type">Industry Type</label>
+                <div class="input-wrapper">
+                    {{ form.industry_type }}
+                    {% if form.industry_type.errors %}
+                        <div class="text-danger">
+                            {% for error in form.industry_type.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Company Location -->
+            <div class="form-group">
+                <label for="id_company_location">Company Location</label>
+                <div class="input-wrapper">
+                    {{ form.company_location }}
+                    {% if form.company_location.errors %}
+                        <div class="text-danger">
+                            {% for error in form.company_location.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Company Size -->
+            <div class="form-group">
+                <label for="id_company_size">Company Size</label>
+                <div class="input-wrapper">
+                    {{ form.company_size }}
+                    {% if form.company_size.errors %}
+                        <div class="text-danger">
+                            {% for error in form.company_size.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Website URL -->
+            <div class="form-group">
+                <label for="id_website_url">Website URL</label>
+                <div class="input-wrapper">
+                    {{ form.website_url }}
+                    {% if form.website_url.errors %}
+                        <div class="text-danger">
+                            {% for error in form.website_url.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="form-group">
+                <label for="id_social_media_links">Social Media Links</label>
+                <div class="input-wrapper">
+                    {{ form.social_media_links }}
+                    {% if form.social_media_links.errors %}
+                        <div class="text-danger">
+                            {% for error in form.social_media_links.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <small class="form-text text-muted">Enter social media links in the format: {'platform': 'URL'}</small>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Save Profile</button>
+            </div>
+        </form>
+
+        <!-- Link to View Profile -->
+        <p class="mt-3 text-center">
+            <a href="{% url 'view_profile_employer' %}">View Your Profile</a>
+        </p>
+    </div>
+
+    <!-- Optional: Add Bootstrap JS for better form handling -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+{%endblock%}
